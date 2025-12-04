@@ -1,1 +1,0 @@
-<index.ts code here>
