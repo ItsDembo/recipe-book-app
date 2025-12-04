@@ -19,6 +19,12 @@ const MOCK_DATA = {
         prepTime: "15 mins",
         cookTime: "20 mins",
         servings: 2,
+        nutrition: {
+            calories: 450,
+            protein: 18,
+            carbs: 52,
+            fats: 16
+        },
         ingredients: [
             { name: "Quinoa", qty: "1", unit: "cup" },
             { name: "Cherry Tomatoes", qty: "1", unit: "cup" },
@@ -33,10 +39,10 @@ const MOCK_DATA = {
     },
     dailyPlan: {
         meals: {
-            breakfast: { title: "Oatmeal (Demo)", type: "Breakfast", calories: "350" },
-            lunch: { title: "Quinoa Bowl (Demo)", type: "Lunch", calories: "450" },
-            snack: { title: "Apple", type: "Snack", calories: "95" },
-            dinner: { title: "Salmon", type: "Dinner", calories: "500" }
+            breakfast: { title: "Oatmeal (Demo)", type: "Breakfast", calories: 350, protein: 12, carbs: 54, fats: 10 },
+            lunch: { title: "Quinoa Bowl (Demo)", type: "Lunch", calories: 450, protein: 18, carbs: 52, fats: 16 },
+            snack: { title: "Apple", type: "Snack", calories: 95, protein: 1, carbs: 25, fats: 0 },
+            dinner: { title: "Salmon", type: "Dinner", calories: 500, protein: 42, carbs: 18, fats: 28 }
         }
     }
 };

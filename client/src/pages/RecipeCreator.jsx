@@ -105,6 +105,29 @@ const RecipeCreator = () => {
                                         <Users className="w-4 h-4" /> {recipe.servings} servings
                                     </div>
                                 </div>
+
+                                {recipe.nutrition && (
+                                    <div className="mt-4 p-4 bg-white/10 rounded-xl">
+                                        <div className="grid grid-cols-4 gap-4 text-center">
+                                            <div>
+                                                <div className="text-2xl font-bold">{recipe.nutrition.calories}</div>
+                                                <div className="text-xs text-primary-100">Calories</div>
+                                            </div>
+                                            <div>
+                                                <div className="text-2xl font-bold">{recipe.nutrition.protein}g</div>
+                                                <div className="text-xs text-primary-100">Protein</div>
+                                            </div>
+                                            <div>
+                                                <div className="text-2xl font-bold">{recipe.nutrition.carbs}g</div>
+                                                <div className="text-xs text-primary-100">Carbs</div>
+                                            </div>
+                                            <div>
+                                                <div className="text-2xl font-bold">{recipe.nutrition.fats}g</div>
+                                                <div className="text-xs text-primary-100">Fats</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             <div className="p-8 space-y-8">

@@ -5,18 +5,29 @@ const generateLifestylePlan = async (userProfile) => {
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 2000));
 
+    // Calculate BMR (Mifflin-St Jeor Equation for demo)
+    const bmr = userProfile.weight && userProfile.height && userProfile.age
+        ? Math.round(10 * userProfile.weight + 6.25 * userProfile.height - 5 * userProfile.age + 5)
+        : 2000;
+
+    const targetCalories = userProfile.targetCalories || (userProfile.goal === 'lose' ? bmr - 500 : bmr);
+    const proteinGrams = Math.round(userProfile.weight * 1.6); // 1.6g per kg for muscle preservation
+
     return {
-        summary: "Based on your goal to gently build strength and eat more balanced meals, focus on consistency rather than perfection. Aim for protein at every meal and listen to your hunger cues.",
+        summary: `Based on your profile (${userProfile.age}yo, ${userProfile.height}cm, ${userProfile.weight}kg → ${userProfile.goalWeight}kg), your BMR is approximately ${bmr} calories. For ${userProfile.goal === 'lose' ? 'slow, sustainable weight loss' : 'your goal'}, aim for ${targetCalories} calories per day with ${proteinGrams}g protein (${Math.round((proteinGrams * 4 / targetCalories) * 100)}% of calories). Focus on ${userProfile.dietaryPreference} foods and consistency over perfection.`,
         actionPoints: [
-            "Add a source of protein (beans, tofu, eggs, lean meat) to your breakfast.",
-            "Hydrate: Try to drink a glass of water before your morning coffee.",
-            "Movement: A 15-minute walk after lunch can help digestion and energy.",
-            "Prep: Wash and chop 2 types of veggies on Sunday for quick access."
+            `Calorie Target: ${targetCalories} cal/day (BMR: ${bmr})`,
+            `Protein Goal: ${proteinGrams}g/day (~${Math.round(proteinGrams / 3)}g per meal)`,
+            `Workouts: ${userProfile.workoutsPerWeek} times/week - great for ${userProfile.goal === 'lose' ? 'fat loss while preserving muscle' : 'building strength'}`,
+            userProfile.restrictions ? `Avoiding: ${userProfile.restrictions}` : `Dietary Style: ${userProfile.dietaryPreference} - rich in whole foods`,
+            "Hydrate: Drink water before meals and throughout the day",
+            "Meal Timing: Eat within 1-2 hours of waking, space meals 3-4 hours apart",
+            "Prep Strategy: Batch cook proteins on Sunday, pre-chop veggies"
         ],
         weeklyCheckIn: [
-            "Did you feel energized after your meals?",
-            "How was your sleep quality this week?",
-            "Did you manage to add a veggie to lunch 3 times?"
+            "Did you hit your protein target 5+ days?",
+            "How was your energy and sleep quality?",
+            "Did you feel satisfied after meals?"
         ]
     };
 };
@@ -30,6 +41,12 @@ const generateRecipe = async (preferences) => {
         prepTime: "15 mins",
         cookTime: "20 mins",
         servings: 2,
+        nutrition: {
+            calories: 450,
+            protein: 18,
+            carbs: 52,
+            fats: 16
+        },
         ingredients: [
             { name: "Quinoa", qty: "1", unit: "cup" },
             { name: "Cherry Tomatoes", qty: "1", unit: "cup" },
@@ -60,22 +77,34 @@ const generateDailyPlan = async (preferences) => {
             breakfast: {
                 title: "Oatmeal with Berries & Nuts",
                 type: "Breakfast",
-                calories: "~350" // Optional
+                calories: 350,
+                protein: 12,
+                carbs: 54,
+                fats: 10
             },
             lunch: {
                 title: "Mediterranean Quinoa Bowl",
                 type: "Lunch",
-                calories: "~450"
+                calories: 450,
+                protein: 18,
+                carbs: 52,
+                fats: 16
             },
             snack: {
                 title: "Apple slices with Almond Butter",
                 type: "Snack",
-                calories: "~200"
+                calories: 200,
+                protein: 6,
+                carbs: 24,
+                fats: 9
             },
             dinner: {
                 title: "Baked Salmon with Asparagus",
                 type: "Dinner",
-                calories: "~500"
+                calories: 500,
+                protein: 42,
+                carbs: 18,
+                fats: 28
             }
         },
         tips: "Great balance of Omega-3s today!"

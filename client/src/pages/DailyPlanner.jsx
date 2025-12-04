@@ -85,7 +85,12 @@ const MealCard = ({ icon, title, meal, time }) => (
         <div className="flex-1">
             <div className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-1">{title}</div>
             <h3 className="text-xl font-bold text-gray-900">{meal.title}</h3>
-            <p className="text-gray-500 text-sm mt-1">{meal.calories} • {meal.type}</p>
+            <div className="flex gap-4 mt-2 text-sm text-gray-600">
+                <span className="font-semibold">{meal.calories} cal</span>
+                {meal.protein && <span>P: {meal.protein}g</span>}
+                {meal.carbs && <span>C: {meal.carbs}g</span>}
+                {meal.fats && <span>F: {meal.fats}g</span>}
+            </div>
         </div>
     </div>
 );

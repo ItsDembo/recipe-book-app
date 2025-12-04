@@ -31,9 +31,44 @@ const MainLayout = () => {
                 <Outlet />
             </main>
 
-            <footer className="bg-white border-t border-gray-100 py-8 mt-auto">
-                <div className="container mx-auto px-4 text-center text-gray-500 text-sm">
-                    <p>© {new Date().getFullYear()} NourishAI Kitchen. Smart food, real habits.</p>
+            <footer className="bg-white border-t border-gray-100 py-12 mt-auto">
+                <div className="container mx-auto px-4">
+                    <div className="grid md:grid-cols-4 gap-8">
+                        <div>
+                            <div className="flex items-center gap-2 text-primary-600 mb-4">
+                                <ChefHat className="w-6 h-6" />
+                                <span className="font-display font-bold">NourishAI Kitchen</span>
+                            </div>
+                            <p className="text-sm text-gray-600">Smart food, real habits. AI-powered healthy eating made simple.</p>
+                        </div>
+
+                        <div>
+                            <h4 className="font-semibold text-gray-900 mb-4">Features</h4>
+                            <ul className="space-y-2 text-sm">
+                                <li><Link to="/lifestyle" className="text-gray-600 hover:text-primary-600 transition-colors">Lifestyle Coach</Link></li>
+                                <li><Link to="/recipes" className="text-gray-600 hover:text-primary-600 transition-colors">Recipe Creator</Link></li>
+                                <li><Link to="/planner" className="text-gray-600 hover:text-primary-600 transition-colors">Daily Planner</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
+                            <ul className="space-y-2 text-sm">
+                                <li><Link to="/dashboard" className="text-gray-600 hover:text-primary-600 transition-colors">Dashboard</Link></li>
+                                <li><Link to="/profile" className="text-gray-600 hover:text-primary-600 transition-colors">Profile</Link></li>
+                                <li><Link to="/" className="text-gray-600 hover:text-primary-600 transition-colors">Home</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 className="font-semibold text-gray-900 mb-4">About</h4>
+                            <p className="text-sm text-gray-600">Built with React, Tailwind CSS, and AI to help you build sustainable healthy eating habits.</p>
+                        </div>
+                    </div>
+
+                    <div className="border-t border-gray-100 mt-8 pt-8 text-center text-sm text-gray-500">
+                        <p>© {new Date().getFullYear()} NourishAI Kitchen. All rights reserved.</p>
+                    </div>
                 </div>
             </footer>
         </div>
