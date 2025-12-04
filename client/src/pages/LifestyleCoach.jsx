@@ -35,8 +35,8 @@ const LifestyleCoach = () => {
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <header className="text-center">
-                <h1 className="text-3xl font-display font-bold text-gray-900">Lifestyle Coach</h1>
-                <p className="text-gray-600 mt-2">Let's create your personalized plan for sustainable, healthy living.</p>
+                <h1 className="text-3xl font-display font-bold text-gray-900">Your Personal Lifestyle Coach</h1>
+                <p className="text-gray-600 mt-2">Answer a few quick questions and get a personalized nutrition plan designed just for you. No judgment, just science-backed guidance.</p>
             </header>
 
             {step === 'form' && (
@@ -141,18 +141,29 @@ const LifestyleCoach = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Dietary Preference</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">What type of food do you enjoy?</label>
                         <select
                             className="w-full p-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary-500 outline-none"
                             value={formData.dietaryPreference}
                             onChange={(e) => setFormData({ ...formData, dietaryPreference: e.target.value })}
                         >
-                            <option value="mediterranean">Mediterranean</option>
                             <option value="balanced">Balanced / No preference</option>
+                            <option value="mediterranean">Mediterranean</option>
+                            <option value="asian">Asian (Chinese, Japanese, Thai)</option>
+                            <option value="indian">Indian</option>
+                            <option value="mexican">Mexican</option>
+                            <option value="italian">Italian</option>
+                            <option value="middle-eastern">Middle Eastern</option>
+                            <option value="american">American</option>
+                            <option value="french">French</option>
+                            <option value="caribbean">Caribbean</option>
+                            <option value="african">African</option>
+                            <option value="latin">Latin American</option>
                             <option value="vegetarian">Vegetarian</option>
-                            <option value="vegan">Vegan</option>
+                            <option value="vegan">Plant-based / Vegan</option>
                             <option value="keto">Keto / Low carb</option>
                             <option value="paleo">Paleo</option>
+                            <option value="whole30">Whole30</option>
                         </select>
                     </div>
 

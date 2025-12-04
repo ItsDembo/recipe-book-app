@@ -12,22 +12,26 @@ const generateLifestylePlan = async (userProfile) => {
 
     const targetCalories = userProfile.targetCalories || (userProfile.goal === 'lose' ? bmr - 500 : bmr);
     const proteinGrams = Math.round(userProfile.weight * 1.6); // 1.6g per kg for muscle preservation
+    const fatsGrams = Math.round((targetCalories * 0.25) / 9); // 25% of calories from fats
+    const carbsGrams = Math.round((targetCalories - (proteinGrams * 4) - (fatsGrams * 9)) / 4);
 
     return {
-        summary: `Based on your profile (${userProfile.age}yo, ${userProfile.height}cm, ${userProfile.weight}kg → ${userProfile.goalWeight}kg), your BMR is approximately ${bmr} calories. For ${userProfile.goal === 'lose' ? 'slow, sustainable weight loss' : 'your goal'}, aim for ${targetCalories} calories per day with ${proteinGrams}g protein (${Math.round((proteinGrams * 4 / targetCalories) * 100)}% of calories). Focus on ${userProfile.dietaryPreference} foods and consistency over perfection.`,
+        summary: `🎯 Your Personalized Plan\n\nBased on your profile (${userProfile.age} years old, ${userProfile.height}cm, ${userProfile.weight}kg → ${userProfile.goalWeight}kg goal), here's what will work for YOU:\n\n📊 Your Numbers:\n• BMR (calories you burn at rest): ${bmr} cal\n• Target Daily Calories: ${targetCalories} cal\n• Protein: ${proteinGrams}g (${Math.round((proteinGrams * 4 / targetCalories) * 100)}% of calories)\n• Carbs: ${carbsGrams}g (${Math.round((carbsGrams * 4 / targetCalories) * 100)}%)\n• Fats: ${fatsGrams}g (${Math.round((fatsGrams * 9 / targetCalories) * 100)}%)\n\n💡 Starting Out? Keep it Simple!\nDon't stress about hitting all these numbers perfectly. Focus on just TWO things to start:\n1️⃣ Calories: ${targetCalories}/day\n2️⃣ Protein: ${proteinGrams}g/day\n\nOnce you've got those down for 2-3 weeks, you can fine-tune carbs and fats. Small wins lead to big results! 🚀`,
         actionPoints: [
-            `Calorie Target: ${targetCalories} cal/day (BMR: ${bmr})`,
-            `Protein Goal: ${proteinGrams}g/day (~${Math.round(proteinGrams / 3)}g per meal)`,
-            `Workouts: ${userProfile.workoutsPerWeek} times/week - great for ${userProfile.goal === 'lose' ? 'fat loss while preserving muscle' : 'building strength'}`,
-            userProfile.restrictions ? `Avoiding: ${userProfile.restrictions}` : `Dietary Style: ${userProfile.dietaryPreference} - rich in whole foods`,
-            "Hydrate: Drink water before meals and throughout the day",
-            "Meal Timing: Eat within 1-2 hours of waking, space meals 3-4 hours apart",
-            "Prep Strategy: Batch cook proteins on Sunday, pre-chop veggies"
+            `🎯 Daily Targets: ${targetCalories} cal | ${proteinGrams}g protein | ${carbsGrams}g carbs | ${fatsGrams}g fat`,
+            `💪 Protein per meal: ~${Math.round(proteinGrams / 3)}g (makes hitting your daily goal easier!)`,
+            `🏋️ Workouts: ${userProfile.workoutsPerWeek} times/week - perfect for ${userProfile.goal === 'lose' ? 'burning fat while keeping muscle' : 'building strength'}`,
+            userProfile.restrictions ? `🚫 Avoiding: ${userProfile.restrictions}` : `🍽️ Food Style: ${userProfile.dietaryPreference} - eat what you love!`,
+            "💧 Hydration Hack: Drink 500ml water when you wake up, before each meal",
+            "⏰ Meal Timing: Eat within 1-2 hours of waking, space meals 3-4 hours apart for stable energy",
+            "🔥 Prep Like a Pro: Sunday = protein batch cook day. Wednesday = veggie prep. Future you will thank you!",
+            "📱 Track for 1 week: Use our Daily Planner to see patterns. Knowledge = power!"
         ],
         weeklyCheckIn: [
-            "Did you hit your protein target 5+ days?",
-            "How was your energy and sleep quality?",
-            "Did you feel satisfied after meals?"
+            "Did you hit your protein target 5+ days? (This is the #1 game-changer)",
+            "How's your energy? Sleep quality? Mood?",
+            "Did you feel satisfied after meals, or still hungry?",
+            "What's ONE thing you'll improve next week?"
         ]
     };
 };
