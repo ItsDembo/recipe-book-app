@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int             @id @default(autoincrement())
+  email          String          @unique
+  password       String
+  name           String?
+  ageRange       String?
+  heightCm       Float?
+  weightKg       Float?
+  activityLevel  String?
+  mainGoal       String?
+  dietaryProfile DietaryProfile?
+  recipes        Recipe[]
+  dailyPlans     DailyPlan[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+}
+
+model DietaryProfile {
+  id            Int      @id @default(autoincrement())
+  userId        Int      @unique
+  user          User     @relation(fields: [userId], references: [id])
+  isVegetarian  Boolean  @default(false)
+  isVegan       Boolean  @default(false)
+  isPescatarian Boolean  @default(false)
+  isGlutenFree  Boolean  @default(false)
+  isLactoseFree Boolean  @default(false)
+  isHalal       Boolean  @default(false)
+  isKosher      Boolean  @default(false)
+  allergies     String[] // Stored as array of strings
+  dislikes      String[] // Stored as array of strings
+}
+
+model Recipe {
+  id          Int      @id @default(autoincrement())
+  userId      Int?
+  user        User?    @relation(fields: [userId], references: [id])
+  title       String
+  description String?
+  cuisine     String?
+  mealType    String?
+  servings    Int      @default(1)
+  ingredients Json // Array of { name, qty, unit }
+  steps       String[]
+  createdAt   DateTime @default(now())
+}
+
+model DailyPlan {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id])
+  date         DateTime @default(now())
+  meals        Json // Structure: { breakfast: { recipeId, ... }, lunch: ... }
+  sourcePrompt String?
+  createdAt    DateTime @default(now())
+}
