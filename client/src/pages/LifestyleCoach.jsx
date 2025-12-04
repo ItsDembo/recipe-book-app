@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, CheckCircle2 } from 'lucide-react';
-import axios from 'axios';
+import api from '../services/api';
 
 const LifestyleCoach = () => {
     const [step, setStep] = useState('form'); // form, loading, result
@@ -11,22 +11,6 @@ const LifestyleCoach = () => {
         goal: 'maintain',
         restrictions: []
     });
-    const [plan, setPlan] = useState(null);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setStep('loading');
-        try {
-            // In a real app, use environment variable for API URL
-            const response = await axios.post('http://localhost:3000/api/ai/lifestyle', formData);
-            setPlan(response.data);
-            setStep('result');
-        } catch (error) {
-            console.error("Error fetching plan:", error);
-            setStep('form'); // Go back on error
-        }
-    };
-
     return (
         <div className="max-w-3xl mx-auto space-y-8">
             <header className="text-center">
@@ -65,8 +49,8 @@ const LifestyleCoach = () => {
                                     type="button"
                                     onClick={() => setFormData({ ...formData, activityLevel: level })}
                                     className={`p-3 rounded-xl border text-sm font-medium capitalize transition-colors ${formData.activityLevel === level
-                                            ? 'bg-primary-50 border-primary-500 text-primary-700'
-                                            : 'border-gray-200 text-gray-600 hover:bg-gray-50'
+                                        ? 'bg-primary-50 border-primary-500 text-primary-700'
+                                        : 'border-gray-200 text-gray-600 hover:bg-gray-50'
                                         }`}
                                 >
                                     {level}

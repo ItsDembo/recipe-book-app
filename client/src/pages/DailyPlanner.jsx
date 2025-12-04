@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Sun, Moon, Coffee } from 'lucide-react';
-import axios from 'axios';
+import api from '../services/api';
 
 const DailyPlanner = () => {
     const [loading, setLoading] = useState(false);
@@ -10,15 +10,14 @@ const DailyPlanner = () => {
     const handleGenerate = async () => {
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:3000/api/ai/daily-plan', {});
-            setPlan(response.data);
+            const data = await api.getDailyPlan({});
+            setPlan(data);
         } catch (error) {
             console.error("Error generating plan:", error);
         } finally {
             setLoading(false);
         }
     };
-
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             <header className="flex items-center justify-between">
