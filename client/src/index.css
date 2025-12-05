@@ -5,10 +5,16 @@
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: #fcfcfc;
+    background-color: #FAF9F6;
     color: #1f2937;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Outfit', system-ui, sans-serif;
   }
 }

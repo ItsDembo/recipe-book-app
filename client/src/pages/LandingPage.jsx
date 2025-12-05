@@ -14,7 +14,7 @@ const LandingPage = () => {
                     className="text-4xl md:text-6xl font-display font-bold text-gray-900 leading-tight"
                 >
                     Healthy eating, powered by AI <br />
-                    <span className="text-primary-500">without the diet culture.</span>
+                    <span className="text-primary-600">without the diet culture.</span>
                 </motion.h1>
 
                 <motion.p

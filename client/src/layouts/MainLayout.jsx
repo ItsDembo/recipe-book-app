@@ -1,15 +1,14 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
-import { ChefHat, User, Calendar, Home } from 'lucide-react';
+import { User, Calendar, Home } from 'lucide-react';
 
 const MainLayout = () => {
     return (
-        <div className="min-h-screen flex flex-col bg-background text-gray-800 font-sans">
-            <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div className="min-h-screen flex flex-col bg-cream-100 text-gray-800 font-sans">
+            <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                    <Link to="/" className="flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors">
-                        <ChefHat className="w-8 h-8" />
-                        <span className="text-xl font-display font-bold tracking-tight">NourishAI Kitchen</span>
+                    <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                        <img src="/logo.jpg" alt="NourishAI Kitchen" className="h-10 w-auto" />
                     </Link>
 
                     <nav className="hidden md:flex items-center gap-8">
@@ -35,9 +34,8 @@ const MainLayout = () => {
                 <div className="container mx-auto px-4">
                     <div className="grid md:grid-cols-4 gap-8">
                         <div>
-                            <div className="flex items-center gap-2 text-primary-600 mb-4">
-                                <ChefHat className="w-6 h-6" />
-                                <span className="font-display font-bold">NourishAI Kitchen</span>
+                            <div className="flex items-center gap-2 mb-4">
+                                <img src="/logo.jpg" alt="NourishAI Kitchen" className="h-8 w-auto" />
                             </div>
                             <p className="text-sm text-gray-600">Smart food, real habits. AI-powered healthy eating made simple.</p>
                         </div>
