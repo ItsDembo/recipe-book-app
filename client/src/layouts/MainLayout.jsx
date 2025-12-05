@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { User, Calendar, Home } from 'lucide-react';
+import logoImage from '/logo.png';
 
 const MainLayout = () => {
     return (
@@ -8,7 +9,7 @@ const MainLayout = () => {
             <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm">
                 <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                     <Link to="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="NourishAI Kitchen" className="h-10 w-auto" />
+                        <img src={logoImage} alt="NourishAI Kitchen" className="h-10 w-auto" />
                     </Link>
 
                     <nav className="hidden md:flex items-center gap-8">
@@ -35,7 +36,7 @@ const MainLayout = () => {
                     <div className="grid md:grid-cols-4 gap-8">
                         <div>
                             <div className="flex items-center gap-2 mb-4">
-                                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="NourishAI Kitchen" className="h-8 w-auto" />
+                                <img src={logoImage} alt="NourishAI Kitchen" className="h-8 w-auto" />
                             </div>
                             <p className="text-sm text-gray-600">Smart food, real habits. AI-powered healthy eating made simple.</p>
                         </div>
